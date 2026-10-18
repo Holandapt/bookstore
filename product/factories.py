@@ -24,8 +24,8 @@ class ProductFactory(factory.django.DjangoModelFactory):
             return
         if extracted:
             # Se você passar categorias específicas ao chamar a factory, adiciona elas
-            for cat in extracted:
-                self.category.add(cat)
+            for category in extracted:
+                self.category.add(category)
         else:
             # Se não passar nada, cria e adiciona uma categoria padrão automaticamente
             self.category.add(CategoryFactory())

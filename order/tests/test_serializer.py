@@ -13,10 +13,10 @@ def test_order_serializer_valid_data(valid_order_data):
 # This test verifies whetes mandatory fields are validated:
 @pytest.mark.django_db
 def test_serializer_requires_product(valid_order_data):
-    valid_order_data.pop("product")
+    valid_order_data.pop("products_id")
     serializer = OrderSerializer(data=valid_order_data)
     assert not serializer.is_valid()
-    assert "product" in serializer.errors
+    assert "products_id" in serializer.errors
 
 
 # This test verifies the data produced by the serializer:
