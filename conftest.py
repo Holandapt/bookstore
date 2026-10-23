@@ -19,14 +19,12 @@ def default_category():
 
 
 @pytest.fixture
-def valid_product_data():
+def valid_product_data(default_category):
     return {
         "title": "Notebook Dell",
         "price": 4500,
         "slug": "notebook-gamer",
-        "category": [
-            {"title": "tecnologia", "slug": "lancamento", "description": "2026"}
-        ],
+        "categories_id": [default_category.id],
     }
 
 
@@ -44,9 +42,8 @@ def default_order(default_user, default_product):
 
 
 @pytest.fixture
-def valid_order_data(default_user, valid_product_data):
+def valid_order_data(default_user, default_product):
     return {
         "user": default_user.id,
-        "product": [valid_product_data],
-        "total": 1500,
+        "products_id": [default_product.id],
     }

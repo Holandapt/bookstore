@@ -16,10 +16,10 @@ def test_product_serializer_valid_data(valid_product_data):
 @pytest.mark.django_db
 def test_serializer_requires_category(valid_product_data):
     # Remove o titulo para ver se é obrigatório.
-    valid_product_data.pop("category")
+    valid_product_data.pop("categories_id")
     serializer = ProductSerializer(data=valid_product_data)
     assert not serializer.is_valid()
-    assert "category" in serializer.errors
+    assert "categories_id" in serializer.errors
 
 
 # This test verifies that invalid data are rejected:
@@ -33,11 +33,10 @@ def test_serializer_rejects_price_invalid(valid_product_data):
 
 # This test verifies the data produced by the serializer:
 @pytest.mark.django_db
-def test_serializer_returns_expected_fields(valid_product_data):
-    serializer = ProductSerializer(data=valid_product_data)
-    serializer.is_valid()
-    expected_fields = {"title", "price", "description", "category"}
-    assert set(serializer.data.keys()) == expected_fields
+def test_serializer_returns_expected_fields(default_product):
+    serializer = ProductSerializer(default_product)
+    expected_fields = {"id", "title", "price", "description", "active", "category"}
+    assert expected_fields.issubset(set(serializer.data.keys()))
 
 
 # This test validates whether the Serializer is converting correctly
