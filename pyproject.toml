@@ -13,7 +13,9 @@ dependencies = [
     "djangorestframework (>=3.18.3,<4.0.0)",
     "django-rest-framework (>=0.1.0,<0.2.0)",
     "django-extensions (>=4.1,<5.0)",
-    "django-debug-toolbar (>=8.0.0,<9.0.0)"
+    "django-debug-toolbar (>=8.0.0,<9.0.0)",
+    "psycopg2-binary (>=2.9.13,<3.0.0)",
+    "python-dotenv (>=1.2.4,<2.0.0)"
 ]
 
 [dependency-groups]
@@ -21,7 +23,8 @@ dev = [
     "pytest (>=9.1.1,<10.0.0)",
     "factory-boy (>=3.3.3,<4.0.0)",
     "pytest-django (>=4.14.0,<5.0.0)",
-    "black (>=26.10.1,<27.0.0)"
+    "black (>=26.10.1,<27.0.0)",
+    "flake8 (>=7.4.1,<8.0.0)"
 ]
 
 
