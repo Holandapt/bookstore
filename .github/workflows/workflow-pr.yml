@@ -1,17 +1,20 @@
 name: Python Pull Request Workflow
-on: [pull_request]
-jobs:
 
+on: [pull_request]
+
+jobs:
   qa:
     name: Quality check
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@master
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.14
-      - name:   Install poetry
+          python-version: "3.14"
+
+      - name: Install poetry and dependencies
         run: |
           pip install -U pip
           pip install poetry
@@ -21,19 +24,14 @@ jobs:
       
       - name: View poetry --help
         run: poetry --help
-      
-      - name: Install dependencies
-        shell: bash
-        run: python -m poetry install
 
       - name: Test
-        run: 
-          poetry run python manage.py test
+        run: poetry run python manage.py test
       
-      - name: Wemake Python Stylguide
+      - name: Wemake Python Styleguide
         uses: wemake-services/wemake-python-styleguide@0.16.0
         continue-on-error: true
         with:
           reporter: 'github-pr-review'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

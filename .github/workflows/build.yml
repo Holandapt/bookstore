@@ -18,22 +18,20 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version}}
+        python-version: ${{ matrix.python-version }}
       
     - name: Install poetry ${{ matrix.poetry-version }}
       run: |
-        python -m ensurepip
+        python -m ensurepip --upgrade
         python -m pip install --upgrade pip
-        python -m pip install poetry==${{ matrix.poetry-version }}
+        pip install poetry==${{ matrix.poetry-version }}
     
     - name: View poetry --help
       run: poetry --help
 
     - name: Install dependencies
       shell: bash
-      run: python -m poetry install
+      run: poetry install
 
     - name: Test
-      run: 
-        poetry run python manage.py test 
-    
+      run: poetry run python manage.py test
