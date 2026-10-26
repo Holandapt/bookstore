@@ -17,6 +17,7 @@ jobs:
       - name: Install poetry and dependencies
         run: |
           pip install -U pip
+          poetry config virtualenvs.create false
           pip install poetry
           poetry install
         env:
@@ -26,7 +27,7 @@ jobs:
         run: poetry --help
 
       - name: Test
-        run: poetry run python manage.py test
+        run: python manage.py test
       
       - name: Wemake Python Styleguide
         uses: wemake-services/wemake-python-styleguide@0.16.0
