@@ -10,6 +10,8 @@ services:
       - ./.env.dev
     depends_on:
       - db
+    networks:
+      - backend
   db:
     image: postgres:15-alpine
     volumes:
@@ -18,5 +20,11 @@ services:
       - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=dev
       - POSTGRES_DB=bookstore_db
+    networks:
+      - backend
 volumes:
   postgres_data:
+
+networks:
+  backend:
+    driver: bridge
