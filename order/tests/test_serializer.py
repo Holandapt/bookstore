@@ -23,5 +23,5 @@ def test_serializer_requires_product(valid_order_data):
 @pytest.mark.django_db
 def test_serializer_return_expected_fields(default_order, default_product):
     serializer = OrderSerializer(default_order)
-    assert serializer.data["user"] == 1
+    assert serializer.data["user"] == default_order.user_id
     assert serializer.data["total"] == default_product.price
