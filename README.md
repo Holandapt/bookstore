@@ -1,35 +1,55 @@
-# Django Bookstore API
+# Bookstore
 
-Projeto desenvolvido com **Django**, utilizando **Poetry** para a gestão de dependências e **Pytest** juntamente com **Factory Boy** para a execução de testes automatizados.
+Bookstore APP from Backend Python course from EBAC
 
-## Pré-requisitos:
+## Prerequisites
 
-Certifique-se de ter instalado no seu sistema:  
-- Python (versão 3.10 ou superior recomendada)
-- Poetry (gestor de dependências)
+* Python 3.11+
+* Poetry
+* Docker && docker-compose
 
-## Clone o repositõrio:
+## Quickstart
 
+1. Clone this project:
+   ```bash
+   git clone git@github.com:Holandaptr/bookstore.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   cd bookstore
+   poetry install
+   ```
+
+3. Run local dev server:
+   ```bash
+   poetry run python manage.py migrate
+   poetry run python manage.py runserver
+   ```
+
+4. Run docker dev server environment:
+   ```bash
+   docker-compose up -d --build 
+   docker-compose exec web python manage.py migrate
+   ```
+
+5. Run tests inside of docker:
+   ```bash
+   docker-compose exec web python manage.py test
+   ```
+
+## Continuous Deployment (PythonAnywhere)
+
+The application is deployed on PythonAnywhere with automatic updates via GitHub Webhooks.
+
+* **Webhook Endpoint:** `https://holandaptr.pythonanywhere.com/update_server/`
+* **Server Path:** `/home/Holandaptr/bookstore`
+
+### Manual Pull on PythonAnywhere
+
+If needed, trigger a manual pull from the PythonAnywhere Bash console:
 ```bash
-git clone https://github.com/Holandapt/bookstore
-cd bookstore
+cd ~/bookstore
+git pull
 ```
-# O Poetry irá criar e configurar um ambiente virtual automaticamente com base nos ficheiros.
-
-## Execute as migrações da base de dados:
-
-```bash
-poetry run python manage.py migrate
-```
-
-# Podemos rodar o projeto com:
-
-```bash
-poetry run python manage.py runserver
-```
-
-# Podemos rodar os testes com:
-
-```bash
-poetry run pytest
-```
+*(Remember to click **Reload** in the PythonAnywhere Web tab after pushing or pulling changes).*
