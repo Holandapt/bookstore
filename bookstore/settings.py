@@ -27,9 +27,6 @@ SECRET_KEY = "django-insecure-t=)o(xz-eq*b#xjz@89@876e26s=pj^*+n$l+ic74z)w@vc$z@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -157,3 +154,5 @@ INTERNAL_IPS = ["127.0.0.1"]
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "holandaptr.pythonanywhere.com"]
